@@ -10,12 +10,12 @@ public interface sym {
   /* terminals */
   public static final int MINUS = 4;
   public static final int UMINUS = 5;
-  public static final int REALNUMBER = 11;
+  public static final int REALNUMBER = 12;
   public static final int NUMBER = 10;
   public static final int SEMI = 2;
   public static final int EOF = 0;
   public static final int PLUS = 3;
-  public static final int HEXNUMBER = 12;
+  public static final int HEXNUMBER = 11;
   public static final int error = 1;
   public static final int DIVISION = 9;
   public static final int RPAREN = 8;
@@ -33,8 +33,8 @@ public interface sym {
   "RPAREN",
   "DIVISION",
   "NUMBER",
-  "REALNUMBER",
-  "HEXNUMBER"
+  "HEXNUMBER",
+  "REALNUMBER"
   };
 }
 

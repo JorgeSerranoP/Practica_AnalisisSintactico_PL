@@ -32,8 +32,8 @@ scan with {: return lexer.next_token(); :};
 
 /* Terminals (tokens returned by the scanner). */
 terminal            SEMI, PLUS, MINUS, UMINUS, TIMES, LPAREN, RPAREN, DIVISION;
-terminal Integer    NUMBER;        // our scanner provides numbers as integers
-terminal Double 	REALNUMBER, HEXNUMBER;
+terminal Integer    NUMBER, HEXNUMBER;        // our scanner provides numbers as integers
+terminal Double 	REALNUMBER;
 
 /* Non terminals */
 non terminal            expr_list;
@@ -60,6 +60,7 @@ expr      ::= expr:e1 PLUS  expr:e2         {: RESULT = e1+e2;        :}
              %prec UMINUS
              | LPAREN expr:e RPAREN	        {: RESULT = e;           :}
              | NUMBER:n	                    {: RESULT = n;           :}
+             | HEXNUMBER:n	                {: RESULT = n;           :}
              ;
              
 expr_list ::= expr_list expr1:e SEMI         {: System.out.println(e); :}
@@ -75,4 +76,5 @@ expr1      ::= expr1:e1 PLUS  expr1:e2       {: RESULT = e1+e2;        :}
              | LPAREN expr1:e RPAREN	     {: RESULT = e;           :}
              | REALNUMBER:n	                 {: RESULT = n;           :}
              ;
+             
        

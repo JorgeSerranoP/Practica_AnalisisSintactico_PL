@@ -88,9 +88,9 @@ ident = ([:jletter:] | "_" ) ([:jletterdigit:] | [:jletter:] | "_" )*
   "n"          { return symbolFactory.newSymbol("UMINUS", UMINUS); }
   "("          { return symbolFactory.newSymbol("LPAREN", LPAREN); }
   ")"          { return symbolFactory.newSymbol("RPAREN", RPAREN); }
-  {Number}     { return symbolFactory.newSymbol("NUMBER", NUMBER, Integer.parseInt(yytext())); }
+  {Number}     { return symbolFactory.newSymbol("NUMBER", NUMBER, Double.parseDouble(yytext())); }
   {RealNumber} { return symbolFactory.newSymbol("REALNUMBER", REALNUMBER, Double.parseDouble(yytext()));}
-  {HexNumber}  { return symbolFactory.newSymbol("HEXNUMBER", HEXNUMBER, Integer.decode(yytext()));}
+  {HexNumber}  { return symbolFactory.newSymbol("HEXNUMBER", HEXNUMBER, Double.valueOf(Integer.decode(yytext())));}
   {Comment}    { }
 }
 

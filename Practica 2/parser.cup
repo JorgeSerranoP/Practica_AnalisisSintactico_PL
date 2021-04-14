@@ -31,16 +31,18 @@ init with {:
 scan with {: return lexer.next_token(); :};
 
 /* Terminals (tokens returned by the scanner). */
-terminal            SEMI, PLUS, MINUS, UMINUS, TIMES, LPAREN, RPAREN;
+terminal            SEMI, PLUS, MINUS, UMINUS, TIMES, LPAREN, RPAREN, DIVISION;
 terminal Integer    NUMBER;        // our scanner provides numbers as integers
+terminal Double 	REALNUMBER, HEXNUMBER;
 
 /* Non terminals */
 non terminal            expr_list;
-non terminal Integer    expr;      // used to store evaluated subexpressions
+non terminal Double    expr;      // used to store evaluated subexpressions
 
 /* Precedences */
 precedence left PLUS, MINUS;
 precedence left TIMES;
+precedence left DIVISION;
 precedence left UMINUS;
 
 /* The grammar rules */
@@ -52,8 +54,11 @@ expr      ::= expr:e1 PLUS  expr:e2         {: RESULT = e1+e2;        :}
              | expr:e1 MINUS expr:e2        {: RESULT = e1-e2;        :}
              | expr:e1 TIMES expr:e2        {: RESULT = e1*e2;        :}
              | MINUS expr:e                 {: RESULT = -e;           :}
+             | PLUS expr:e                  {: RESULT = +e;           :}
+             | expr:e1 DIVISION expr:e2     {: RESULT = e1/e2;        :}
              %prec UMINUS
              | LPAREN expr:e RPAREN	         {: RESULT = e;           :}
              | NUMBER:n	                     {: RESULT = n;           :}
+             | REALNUMBER:r	                 {: RESULT = r;           :}
              ;
        

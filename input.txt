@@ -5,3 +5,8 @@
 qkdwapczijohfvbaonwulkZS,fmxdgc agsjzx 
 */
 // SHHHHHHHHHHHHHHHHH
+log(10);
+Ln(2.718281828459045);
+exp(1);
+sin(0);
+cos(0);

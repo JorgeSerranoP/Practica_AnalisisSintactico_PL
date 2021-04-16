@@ -31,7 +31,7 @@ init with {:
 scan with {: return lexer.next_token(); :};
 
 /* Terminals (tokens returned by the scanner). */
-terminal            SEMI, PLUS, MINUS, UMINUS, TIMES, LPAREN, RPAREN, DIVISION;
+terminal            SEMI, PLUS, MINUS, UMINUS, TIMES, LPAREN, RPAREN, DIVISION, LOG, EXP, LN, SIN, COS;
 terminal Double    NUMBER, HEXNUMBER, REALNUMBER;        // our scanner provides numbers as doubles
 
 /* Non terminals */
@@ -43,6 +43,9 @@ precedence left PLUS, MINUS;
 precedence left TIMES;
 precedence left DIVISION;
 precedence left UMINUS;
+precedence left LOG, LN;
+precedence left EXP;
+precedence left COS, SIN;
 
 /* The grammar rules */
 expr_list ::= expr_list expr:e SEMI         {: System.out.println(e); :}
@@ -54,10 +57,15 @@ expr      ::= expr:e1 PLUS  expr:e2         {: RESULT = e1+e2;        :}
              | expr:e1 TIMES expr:e2        {: RESULT = e1*e2;        :}
              | MINUS expr:e                 {: RESULT = -e;           :}
              | PLUS expr:e                  {: RESULT = +e;           :}
+             | LOG expr:e                   {: RESULT = Math.log10(e); :}
+             | LN expr:e                    {: RESULT = Math.log(e); :}
+             | EXP expr:e                   {: RESULT = Math.exp(e); :}
+             | SIN expr:e                   {: RESULT = Math.sin(e); :}
+             | COS expr:e                   {: RESULT = Math.cos(e); :}
              | expr:e1 DIVISION expr:e2     {: RESULT = e1/e2;        :}
              %prec UMINUS
              | LPAREN expr:e RPAREN	        {: RESULT = e;           :}
              | NUMBER:n	                    {: RESULT = n;           :}
              | HEXNUMBER:n	                {: RESULT = n;           :}
-             | REALNUMBER:n	                 {: RESULT = n;           :}
+             | REALNUMBER:n	                {: RESULT = n;           :}
              ;

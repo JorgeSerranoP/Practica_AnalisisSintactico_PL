@@ -59,6 +59,7 @@ Whitespace = [ \t\f] | {Newline}
 Number     = [0-9]+
 RealNumber = [0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?
 HexNumber  = "0X"[0-9A-F]+|"0x"[0-9A-F]+
+/* Logarithm = "log("[0-9]+")" */
 
 /* comments */
 Comment = {TraditionalComment} | {EndOfLineComment}
@@ -88,6 +89,11 @@ ident = ([:jletter:] | "_" ) ([:jletterdigit:] | [:jletter:] | "_" )*
   "n"          { return symbolFactory.newSymbol("UMINUS", UMINUS); }
   "("          { return symbolFactory.newSymbol("LPAREN", LPAREN); }
   ")"          { return symbolFactory.newSymbol("RPAREN", RPAREN); }
+  "log"		   { return symbolFactory.newSymbol("LOG", LOG); }
+  "Ln"		   { return symbolFactory.newSymbol("LN", LN); }
+  "exp"		   { return symbolFactory.newSymbol("EXP", EXP); }
+  "sin"        { return symbolFactory.newSymbol("SIN", SIN); }
+  "cos"        { return symbolFactory.newSymbol("COS", COS); }
   {Number}     { return symbolFactory.newSymbol("NUMBER", NUMBER, Double.parseDouble(yytext())); }
   {RealNumber} { return symbolFactory.newSymbol("REALNUMBER", REALNUMBER, Double.parseDouble(yytext()));}
   {HexNumber}  { return symbolFactory.newSymbol("HEXNUMBER", HEXNUMBER, Double.valueOf(Integer.decode(yytext())));}

@@ -97,4 +97,5 @@ ident = ([:jletter:] | "_" ) ([:jletterdigit:] | [:jletter:] | "_" )*
 
 
 // error fallback
-.|\n          { emit_warning("Unrecognized character '" +yytext()+"' -- ignored"); }
+.|\n          { emit_warning("Unrecognized character '" +yytext()+"' -- ignored");
+}

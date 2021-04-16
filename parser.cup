@@ -61,4 +61,3 @@ expr      ::= expr:e1 PLUS  expr:e2         {: RESULT = e1+e2;        :}
              | HEXNUMBER:n	                {: RESULT = n;           :}
              | REALNUMBER:n	                 {: RESULT = n;           :}
              ;
-             

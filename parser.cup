@@ -40,11 +40,12 @@ scan with {: return lexer.next_token(); :};
 
 
 /* Terminals (tokens returned by the scanner). */
-terminal            SEMI, PLUS, MINUS, UMINUS, TIMES, LPAREN, RPAREN, DIVISION, LOG, EXP, LN, SIN, COS, EQUAL, PLUSPLUS;
+terminal           SEMI, PLUS, MINUS, UMINUS, TIMES, LPAREN, RPAREN, DIVISION, LOG, EXP, LN, SIN, COS, EQUAL, PLUSPLUS, MINUSMINUS;
 terminal Double    NUMBER, HEXNUMBER, REALNUMBER;        // our scanner provides numbers as doubles
-terminal Integer  ARRAYMEM;
+terminal Integer   ARRAYMEM;
+
 /* Non terminals */
-non terminal            expr_list;
+non terminal           expr_list;
 non terminal Double    expr;      // used to store evaluated subexpressions
 
 /* Precedences */
@@ -52,34 +53,32 @@ precedence left PLUS, MINUS;
 precedence left TIMES;
 precedence left DIVISION;
 precedence left UMINUS;
-precedence left LOG, LN;
-precedence left EXP;
-precedence left COS, SIN;
-
 
 /* The grammar rules */
 expr_list ::= expr_list expr:e SEMI         {: System.out.println(e); :}
             | expr:e SEMI                   {: System.out.println(e); :}
             ;
             
-expr      ::= expr:e1 PLUS  expr:e2         {: RESULT = e1+e2;        :}
-             | expr:e1 MINUS expr:e2        {: RESULT = e1-e2;        :}
-             | expr:e1 TIMES expr:e2        {: RESULT = e1*e2;        :}
-             | MINUS expr:e                 {: RESULT = -e;           :}
-             | PLUS expr:e                  {: RESULT = +e;           :}
-             | LOG expr:e                   {: RESULT = Math.log10(e); :}
-             | LN expr:e                    {: RESULT = Math.log(e); :}
-             | EXP expr:e                   {: RESULT = Math.exp(e); :}
-             | SIN expr:e                   {: RESULT = Math.sin(e); :}
-             | COS expr:e                   {: RESULT = Math.cos(e); :}
-             | PLUSPLUS ARRAYMEM:n    		{: MEM[n] = ++MEM[n];		:}
-             | ARRAYMEM:n PLUSPLUS 		    {: MEM[n] = MEM[n]++;		:}
-             | expr:e1 DIVISION expr:e2     {: RESULT = e1/e2;        :}
-             | ARRAYMEM:n EQUAL expr:e      {: MEM[n] = e;				:}
-             | ARRAYMEM:n    				{: RESULT = MEM[n];		    :}
+expr      ::= expr:e1 PLUS  expr:e2         {: RESULT = e1+e2;        			   :}
+             | expr:e1 MINUS expr:e2        {: RESULT = e1-e2;        			   :}
+             | expr:e1 TIMES expr:e2        {: RESULT = e1*e2;        			   :}
+             | expr:e1 DIVISION expr:e2     {: RESULT = e1/e2;        			   :}
+             | MINUS expr:e                 {: RESULT = -e;           			   :}
+             | PLUS expr:e                  {: RESULT = +e;           			   :}
+             | LOG expr:e                   {: RESULT = Math.log10(e); 			   :}
+             | LN expr:e                    {: RESULT = Math.log(e);    		   :}
+             | EXP expr:e                   {: RESULT = Math.exp(e); 			   :}
+             | SIN expr:e                   {: RESULT = Math.sin(e); 			   :}
+             | COS expr:e                   {: RESULT = Math.cos(e); 			   :}
+             | PLUSPLUS ARRAYMEM:n    		{: MEM[n] = ++MEM[n]; RESULT = MEM[n]; :}
+             | ARRAYMEM:n PLUSPLUS 		    {: RESULT = MEM[n]; MEM[n] = MEM[n]+1; :}            
+             | ARRAYMEM:n MINUSMINUS 		{: RESULT = MEM[n]; MEM[n] = MEM[n]-1; :}             
+			 | MINUSMINUS ARRAYMEM:n        {: MEM[n] = --MEM[n]; RESULT = MEM[n]; :}
+			 | ARRAYMEM:n EQUAL expr:e      {: MEM[n] = e;	RESULT = MEM[n];	   :}
+			 | ARRAYMEM:n    				{: RESULT = MEM[n];		 :}
              %prec UMINUS
-             | LPAREN expr:e RPAREN            {: RESULT = e;           :}
-             | NUMBER:n                        {: RESULT = n;           :}
-             | HEXNUMBER:n                     {: RESULT = n;           :}
-             | REALNUMBER:n                    {: RESULT = n;           :}
+             | LPAREN expr:e RPAREN         {: RESULT = e;           :}
+             | NUMBER:n                     {: RESULT = n;           :}
+             | HEXNUMBER:n                  {: RESULT = n;           :}
+             | REALNUMBER:n                 {: RESULT = n;           :}             
              ;

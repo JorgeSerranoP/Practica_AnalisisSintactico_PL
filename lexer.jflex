@@ -94,8 +94,9 @@ ident = ([:jletter:] | "_" ) ([:jletterdigit:] | [:jletter:] | "_" )*
   {Whitespace} { }
   ";"          { return symbolFactory.newSymbol("SEMI", SEMI); }
   "+"          { return symbolFactory.newSymbol("PLUS", PLUS); }
-  "++"         { return symbolFactory.newSymbol("PLUSPLUS", PLUSPLUS); }
+  "++"         { return symbolFactory.newSymbol("PLUSPLUS", PLUSPLUS); }  
   "-"          { return symbolFactory.newSymbol("MINUS", MINUS); }
+  "--"         { return symbolFactory.newSymbol("MINUSMINUS", MINUSMINUS); }
   "*"          { return symbolFactory.newSymbol("TIMES", TIMES); }
   "/"          { return symbolFactory.newSymbol("DIVISION", DIVISION); }
   "n"          { return symbolFactory.newSymbol("UMINUS", UMINUS); }

@@ -38,18 +38,18 @@ import java.io.InputStreamReader;
 				);
     }
     public Symbol symbol(String name, int code, String lexem){
-	return symbolFactory.newSymbol(name, code, 
+		return symbolFactory.newSymbol(name, code, 
 						new Location(yyline+1, yycolumn +1, yychar), 
 						new Location(yyline+1,yycolumn+yylength(), yychar+yylength()), lexem);
     }
     
     public String arrayPos(String symbol){
-    char [] cadenaChar = symbol.toCharArray();
-    String num = "";
-    for (int i = 0; i < cadenaChar.length; i++){
-    	if(Character.isDigit(cadenaChar[i])){
-    		num+=cadenaChar[i];
-    		}
+	    char [] cadenaChar = symbol.toCharArray();
+	    String num = "";
+	    for (int i = 0; i < cadenaChar.length; i++){
+	    	if(Character.isDigit(cadenaChar[i])){
+	    		num+=cadenaChar[i];
+	    	}
     	}
     	return num;
     }
@@ -70,7 +70,7 @@ Whitespace = [ \t\f] | {Newline}
 Number     = [0-9]+
 RealNumber = [0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?
 HexNumber  = "0X"[0-9A-F]+|"0x"[0-9A-F]+
-ArrayMEM = "MEM["[0-9][0-9]*"]"
+ArrayMEM   = "MEM["[0-9][0-9]*"]"
 
 /* comments */
 Comment = {TraditionalComment} | {EndOfLineComment}

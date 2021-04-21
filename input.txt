@@ -1,12 +1,28 @@
-5.3+.1+1e-1;
-5+2;
-5.3+0X11;
-/* 
-qkdwapczijohfvbaonwulkZS,fmxdgc agsjzx 
-*/
-// SHHHHHHHHHHHHHHHHH
-log(10);
-Ln(2.718281828459045);
-exp(1);
-sin(0);
-cos(0);
+5 * 3 - 80/10;
+10 / 5 * 2;
+3 *4;
+ 5 * (4-3) / (8 - (4-1));   
+ 5.3+.1+1e-1 + cos0;
+ 5.3+0X11;
+ log(10*1); 
+ sin 0;
+ cos 0;
+ log(5 * (4-3) / (8 - (4-1))+9);
+MEM[2] = (7*MEM[1]+6)*2;
+MEM[3] = 2;
+MEM[1] = (MEM[2] + MEM[3]); 
+MEM[0] = 1;
+ MEM[1] = 1;  
+ MEM[2] = (++MEM[0]+1);
+ MEM[3] = (MEM[1]+++1);  
+ MEM[0]; /* esta expresion debe resultar 2 */  
+ MEM[1]; /* esta expresion debe resultar 2 */  
+ MEM[2]; /* esta expresion debe resultar 3 */  
+ MEM[3]; /* esta expresion debe resultar 2 */ 
+ MEM[1]++;
+ MEM[1];
+ MEM[4]--;
+ --MEM[4];
+ MEM[5] = --MEM[4];
+ MEM[5]+cos(0);
+ 

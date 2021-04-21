@@ -37,8 +37,6 @@ init with {:
 :};
 scan with {: return lexer.next_token(); :};
 
-
-
 /* Terminals (tokens returned by the scanner). */
 terminal           SEMI, PLUS, MINUS, TIMES, UMINUS, LPAREN, RPAREN, DIVISION, LOG, EXP, LN, SIN, COS, EQUAL, PLUSPLUS, MINUSMINUS;
 terminal Double    NUMBER, HEXNUMBER, REALNUMBER;        // our scanner provides numbers as doubles

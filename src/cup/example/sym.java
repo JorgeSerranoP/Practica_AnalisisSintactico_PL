@@ -9,7 +9,7 @@ package cup.example;
 public interface sym {
   /* terminals */
   public static final int HEXNUMBER = 19;
-  public static final int TIMES = 6;
+  public static final int TIMES = 5;
   public static final int SIN = 13;
   public static final int PLUS = 3;
   public static final int RPAREN = 8;
@@ -29,15 +29,15 @@ public interface sym {
   public static final int MINUS = 4;
   public static final int error = 1;
   public static final int REALNUMBER = 20;
-  public static final int UMINUS = 5;
+  public static final int UMINUS = 6;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
   "SEMI",
   "PLUS",
   "MINUS",
-  "UMINUS",
   "TIMES",
+  "UMINUS",
   "LPAREN",
   "RPAREN",
   "DIVISION",

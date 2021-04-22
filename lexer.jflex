@@ -109,8 +109,8 @@ ident = ([:jletter:] | "_" ) ([:jletterdigit:] | [:jletter:] | "_" )*
   "cos"        { return symbolFactory.newSymbol("COS", COS); }
   "="          { return symbolFactory.newSymbol("EQUAL", EQUAL); }
   {Number}     { return symbolFactory.newSymbol("NUMBER", NUMBER, Double.parseDouble(yytext())); }
-  {RealNumber} { return symbolFactory.newSymbol("REALNUMBER", REALNUMBER, Double.parseDouble(yytext()));}
-  {HexNumber}  { return symbolFactory.newSymbol("HEXNUMBER", HEXNUMBER, Double.valueOf(Integer.decode(yytext())));}
+  {RealNumber} { return symbolFactory.newSymbol("NUMBER", NUMBER, Double.parseDouble(yytext()));}
+  {HexNumber}  { return symbolFactory.newSymbol("NUMBER", NUMBER, Double.valueOf(Integer.decode(yytext())));}
   {ArrayMEM}   { return symbolFactory.newSymbol("ARRAYMEM", ARRAYMEM, Integer.parseInt(arrayPos(yytext()))); }
   {Comment}    { }
 }

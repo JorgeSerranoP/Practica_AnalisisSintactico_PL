@@ -8,7 +8,6 @@ package cup.example;
 /** CUP generated interface containing symbol constants. */
 public interface sym {
   /* terminals */
-  public static final int HEXNUMBER = 19;
   public static final int TIMES = 5;
   public static final int SIN = 13;
   public static final int PLUS = 3;
@@ -20,7 +19,7 @@ public interface sym {
   public static final int LN = 12;
   public static final int MINUSMINUS = 17;
   public static final int LPAREN = 7;
-  public static final int ARRAYMEM = 21;
+  public static final int ARRAYMEM = 19;
   public static final int LOG = 10;
   public static final int EXP = 11;
   public static final int NUMBER = 18;
@@ -28,7 +27,6 @@ public interface sym {
   public static final int PLUSPLUS = 16;
   public static final int MINUS = 4;
   public static final int error = 1;
-  public static final int REALNUMBER = 20;
   public static final int UMINUS = 6;
   public static final String[] terminalNames = new String[] {
   "EOF",
@@ -50,8 +48,6 @@ public interface sym {
   "PLUSPLUS",
   "MINUSMINUS",
   "NUMBER",
-  "HEXNUMBER",
-  "REALNUMBER",
   "ARRAYMEM"
   };
 }

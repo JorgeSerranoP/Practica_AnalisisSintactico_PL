@@ -13,6 +13,7 @@ import java.io.FileInputStream;
 
 parser code {:
   protected Lexer lexer;
+  /* Initiate array values to 0 */
   Double MEM[] = new Double[100];
   {
     for (int i = 0; i<MEM.length; i++){
@@ -25,7 +26,7 @@ parser code {:
 init with {:
   ComplexSymbolFactory f = new ComplexSymbolFactory();
   symbolFactory = f;
-  File file = new File("input.txt");
+  File file = new File("grupo_AguadoSerrano_pruebaOK.txt");
   FileInputStream fis = null;
   try {
     fis = new FileInputStream(file);
@@ -38,7 +39,7 @@ init with {:
 scan with {: return lexer.next_token(); :};
 
 /* Terminals (tokens returned by the scanner). */
-terminal           SEMI, PLUS, MINUS, TIMES, UMINUS, LPAREN, RPAREN, DIVISION, LOG, EXP, LN, SIN, COS, EQUAL, PLUSPLUS, MINUSMINUS;
+terminal           SEMI, PLUS, MINUS, TIMES, DIVISION, UMINUS, LPAREN, RPAREN, LOG, EXP, LN, SIN, COS, EQUAL, PLUSPLUS, MINUSMINUS;
 terminal Double    NUMBER;        // our scanner provides numbers as doubles
 terminal Integer   ARRAYMEM;
 
@@ -63,7 +64,7 @@ term      ::=  	 term:t TIMES factor:f         {: RESULT = t*f;        			      
 	             ;
 
 factor    ::=    LPAREN expr:e RPAREN          {: RESULT = e;                         :}
-				 | NUMBER: n				   {:  RESULT = n;                        :}			 			          
+				 | NUMBER: n				   {: RESULT = n;                         :}			 			          
 	             | ARRAYMEM:n                  {: RESULT = MEM[n];                    :}
 	             | PLUSPLUS ARRAYMEM:n         {: MEM[n] = ++MEM[n]; RESULT = MEM[n]; :}
 	             | ARRAYMEM:n PLUSPLUS         {: RESULT = MEM[n]; MEM[n] = MEM[n]+1; :}
@@ -74,7 +75,7 @@ factor    ::=    LPAREN expr:e RPAREN          {: RESULT = e;                   
 	             | EXP factor:f                {: RESULT = Math.exp(f);               :}
 	             | SIN factor:f                {: RESULT = Math.sin(f);               :}
 	             | COS factor:f                {: RESULT = Math.cos(f);               :}
-	             | ARRAYMEM:n EQUAL factor:f   {: MEM[n] = f;    RESULT = MEM[n];     :}
-	             | MINUS factor:f              {:  RESULT = -f;                       :} 
-	             | PLUS factor:f               {:  RESULT = +f;                       :}                                    
+	             | ARRAYMEM:n EQUAL factor:f   {: MEM[n] = f;        RESULT = MEM[n]; :}
+	             | MINUS factor:f              {: RESULT = -f;                        :} 
+	             | PLUS factor:f               {: RESULT = +f;                        :}                                    
 	             ;
